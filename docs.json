@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "T-Rex Documentation",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -11,58 +11,104 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Documentation",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Overview",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "documentation/overview/introduction",
+              "documentation/overview/what-is-trex",
+              "documentation/overview/connect-to-trex"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Build on T-Rex",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "documentation/build-on-trex/getting-started",
+              "documentation/build-on-trex/smart-contracts",
+              "documentation/build-on-trex/applications"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "How T-Rex Works",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "documentation/how-trex-works/architecture",
+              "documentation/how-trex-works/system-contract"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Tooling",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "documentation/tooling/block-explorers",
+              "documentation/tooling/bridges",
+              "documentation/tooling/faucets",
+              "documentation/tooling/deployed-contracts"
+            ]
+          },
+          {
+            "group": "Infrastructure",
+            "pages": [
+              "documentation/infrastructure"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "Persona",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Persona",
             "pages": [
-              "api-reference/introduction"
+              "persona"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Ecosystem",
+        "groups": [
+          {
+            "group": "Ecosystem",
+            "pages": [
+              "ecosystem",
+              "ecosystem/bridge",
+              "ecosystem/data-indexing",
+              "ecosystem/relayers",
+              "ecosystem/rpc-providers"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api-reference/overview/trex-json-rpc-api"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Ethereum API",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/ethereum-api",
+              "api-reference/ethereum-api/eth-chainId",
+              "api-reference/ethereum-api/eth-call",
+              "api-reference/ethereum-api/eth-getBalance",
+              "api-reference/ethereum-api/eth-getBlockByNumber",
+              "api-reference/ethereum-api/eth-sendRawTransaction"
+            ]
+          },
+          {
+            "group": "Debug API",
+            "pages": [
+              "api-reference/debug-api"
+            ]
+          },
+          {
+            "group": "PubSub API",
+            "pages": [
+              "api-reference/pubsub-api"
             ]
           }
         ]
@@ -72,33 +118,28 @@
       "anchors": [
         {
           "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
+          "href": "https://docs.trex.xyz",
           "icon": "book-open-cover"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Website",
+          "href": "https://www.trex.xyz",
+          "icon": "globe"
         }
       ]
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/trex_logo.webp",
+    "dark": "/logo/trex_logo.webp"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@trex.xyz"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
+    ]
   },
   "contextual": {
     "options": [
@@ -114,9 +155,9 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/trex",
+      "github": "https://github.com/trex-network",
+      "discord": "https://discord.gg/trex"
     }
   }
 }

@@ -1,0 +1,130 @@
+---
+title: "Architecture"
+description: "Understand the architecture and components that make up T-Rex Chain"
+---
+
+# Architecture
+
+T-Rex Chain is an innovative Layer 2 (L2) solution designed to enhance the scalability, security, and interoperability of the Ethereum ecosystem. Built as an EVM-compatible Optimistic Rollup, it processes transactions off-chain while inheriting the robust security of the Ethereum mainnet.
+
+## Overview
+
+T-Rex Chain processes transactions off-chain and assumes they are valid by default. This allows for massive scaling and low transaction costs. Fraud proofs are used to identify and challenge invalid transactions within a specific window, ensuring that the chain remains secure by inheriting the robust security of the Ethereum mainnet.
+
+Our architecture is designed to be **fully decentralized from the ground up**, ensuring resilience and censorship resistance.
+
+## Core Components
+
+### Execution Layer (EVM-compatible Optimistic Rollup)
+
+The execution environment is a high-performance Optimistic Rollup that processes transactions off-chain:
+
+- **Massive Scaling**: Processes thousands of transactions per second (TPS)
+- **Single Proof Submission**: Submits a single, concise proof to the Ethereum mainnet
+- **EVM Compatibility**: Seamless migration and development for existing Ethereum dApps and smart contracts
+- **Low Costs**: Significantly reduced transaction fees compared to Ethereum mainnet
+
+### Sequencer Layer (Decentralized)
+
+Unlike centralized L2s, the T-Rex Chain employs a **decentralized network of sequencers**:
+
+<CardGroup cols={2}>
+  <Card title="Transaction Ordering" icon="list">
+    Collects, orders, and batches transactions into blocks
+  </Card>
+  <Card title="No Single Point of Failure" icon="shield">
+    Decentralized approach prevents single points of failure
+  </Card>
+  <Card title="MEV Protection" icon="lock">
+    Mitigates front-running and MEV (Maximal Extractable Value) risks
+  </Card>
+  <Card title="Permissionless" icon="unlock">
+    Ensures the network remains permissionless and robust
+  </Card>
+</CardGroup>
+
+Sequencers are selected and rewarded through a transparent, on-chain mechanism.
+
+### Data Availability Layer (Decentralized)
+
+Transaction data is published to a decentralized data availability (DA) layer:
+
+- **State Reconstruction**: Any network participant can reconstruct the full state of the T-Rex Chain
+- **Permissionless Validation**: Enables permissionless state validation
+- **Fast Withdrawals**: Supports fast withdrawals through data availability
+- **Cost Reduction**: Separates data publication from transaction execution, reducing storage costs
+- **Enhanced Scalability**: Further enhances overall scalability
+
+## Security Model
+
+### Fraud Proofs
+
+Fraud proofs are used to identify and challenge invalid transactions within a specific window:
+
+1. **Transaction Submission**: Transactions are processed off-chain
+2. **State Commitment**: State roots are committed to Ethereum mainnet
+3. **Challenge Window**: A window is provided for fraud proof submission
+4. **Validation**: Invalid transactions can be challenged and rolled back
+
+### Ethereum Mainnet Security
+
+T-Rex Chain inherits the robust security of the Ethereum mainnet:
+
+- **Settlement Layer**: Ethereum mainnet serves as the settlement layer
+- **Finality**: Final settlement happens on Ethereum
+- **Proven Security**: Leverages Ethereum's battle-tested security model
+
+## Architecture Diagram
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    Ethereum Mainnet                     │
+│              (Settlement & Security Layer)               │
+└────────────────────────┬────────────────────────────────┘
+                         │
+                         │ State Commitments & Fraud Proofs
+                         │
+┌────────────────────────┴────────────────────────────────┐
+│                   T-Rex Chain Layer                      │
+├─────────────────────────────────────────────────────────┤
+│                                                          │
+│  ┌──────────────────┐  ┌──────────────────┐            │
+│  │ Execution Layer  │  │ Sequencer Layer  │            │
+│  │  (Optimistic     │  │ (Decentralized)  │            │
+│  │   Rollup)       │  │                  │            │
+│  └──────────────────┘  └──────────────────┘            │
+│                                                          │
+│  ┌──────────────────────────────────────────┐          │
+│  │   Data Availability Layer (Decentralized)  │          │
+│  └──────────────────────────────────────────┘          │
+│                                                          │
+└──────────────────────────────────────────────────────────┘
+```
+
+## Performance Characteristics
+
+- **Throughput**: Thousands of transactions per second
+- **Latency**: Low transaction confirmation times
+- **Cost**: Significantly lower than Ethereum mainnet
+- **Finality**: Final settlement on Ethereum mainnet
+
+## Decentralization
+
+T-Rex Chain is designed to be fully decentralized:
+
+- **Permissionless**: Anyone can participate as a sequencer or validator
+- **Censorship Resistant**: No single entity controls the network
+- **Open Source**: All code is open source and auditable
+- **Community Governed**: Transparent governance mechanisms
+
+<Card
+  title="System Contracts"
+  icon="file-contract"
+  href="/documentation/how-trex-works/system-contract"
+>
+  Learn about the system contracts that power T-Rex
+</Card>
+
+<Tip>
+The decentralized architecture ensures that T-Rex Chain remains resilient and censorship-resistant, providing a truly decentralized L2 solution.
+</Tip>

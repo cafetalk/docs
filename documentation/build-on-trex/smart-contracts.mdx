@@ -1,0 +1,164 @@
+---
+title: "Smart Contracts"
+description: "Develop and deploy smart contracts on T-Rex Chain"
+---
+
+# Smart Contracts
+
+T-Rex Chain is fully EVM-compatible, meaning you can deploy any Solidity smart contract that works on Ethereum without modifications.
+
+## EVM Compatibility
+
+T-Rex Chain supports:
+
+- **Solidity**: All Solidity versions supported by Ethereum
+- **Standard Libraries**: OpenZeppelin, Hardhat, Foundry, and more
+- **Development Tools**: All Ethereum development tools work out of the box
+- **Standards**: ERC-20, ERC-721, ERC-1155, and all other Ethereum standards
+
+## Contract Development
+
+### Using Hardhat
+
+```bash
+# Initialize Hardhat project
+npx hardhat init
+
+# Install dependencies
+npm install --save-dev @nomicfoundation/hardhat-toolbox
+
+# Compile contracts
+npx hardhat compile
+
+# Run tests
+npx hardhat test
+```
+
+### Using Foundry
+
+```bash
+# Initialize Foundry project
+forge init
+
+# Build
+forge build
+
+# Test
+forge test
+```
+
+## Example: ERC-20 Token
+
+Deploy a standard ERC-20 token using OpenZeppelin:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract MyToken is ERC20 {
+    constructor() ERC20("MyToken", "MTK") {
+        _mint(msg.sender, 1000000 * 10 ** decimals());
+    }
+}
+```
+
+## Gas Optimization
+
+T-Rex offers lower gas costs than Ethereum mainnet. Optimize your contracts for:
+
+- Efficient storage usage
+- Minimal external calls
+- Batch operations where possible
+
+## Deploying Contracts
+
+### Mainnet Deployment
+
+```bash
+# Deploy to T-Rex Mainnet
+npx hardhat run scripts/deploy.js --network trexMainnet
+```
+
+### Testnet Deployment
+
+```bash
+# Deploy to T-Rex Testnet
+npx hardhat run scripts/deploy.js --network trexTestnet
+```
+
+## Contract Verification
+
+Verify your contracts on the block explorer for transparency:
+
+```bash
+npx hardhat verify --network trexMainnet <CONTRACT_ADDRESS> <CONSTRUCTOR_ARGS>
+```
+
+<Card
+  title="Block Explorer"
+  icon="magnifying-glass"
+  href="/documentation/tooling/block-explorers"
+>
+  View and interact with verified contracts
+</Card>
+
+## Integration with T-Rex Ecosystem
+
+### T-Rex Passport Integration
+
+Integrate your dApp with T-Rex Passport for user identity:
+
+```solidity
+import "@trex/passport/contracts/Passport.sol";
+
+contract MyDApp {
+    IPassport public passport;
+    
+    function checkUserBadge(address user, uint256 badgeId) public view returns (bool) {
+        return passport.hasBadge(user, badgeId);
+    }
+}
+```
+
+### T-Rex Badge System
+
+Create custom badges for your dApp:
+
+```solidity
+import "@trex/badge/contracts/BadgeRegistry.sol";
+
+contract MyBadgeValidator {
+    IBadgeRegistry public badgeRegistry;
+    
+    function validateAndMint(address user) public {
+        // Your validation logic
+        if (isEligible(user)) {
+            badgeRegistry.mintBadge(user, badgeId);
+        }
+    }
+}
+```
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Security" icon="shield">
+    Follow security best practices and get audits
+  </Card>
+  <Card title="Gas Efficiency" icon="bolt">
+    Optimize for lower gas costs
+  </Card>
+  <Card title="Testing" icon="flask">
+    Write comprehensive tests before deployment
+  </Card>
+  <Card title="Documentation" icon="book">
+    Document your contracts and APIs
+  </Card>
+</CardGroup>
+
+<Tip>
+Use the [T-Rex SDKs](/documentation/build-on-trex/applications) to easily integrate with the T-Rex ecosystem.
+</Tip>
+

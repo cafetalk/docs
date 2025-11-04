@@ -1,0 +1,171 @@
+---
+title: "Connect to T-Rex"
+description: "Connect your wallet or development environment to T-Rex Chain"
+---
+
+# Connect to T-Rex
+
+This guide will help you connect to the T-Rex network and start building.
+
+## Network Information
+
+### Mainnet
+
+| Field | Value |
+|-------|-------|
+| Chain ID | `1628` |
+| Explorer | [https://explorer.trex.xyz/](https://explorer.trex.xyz/) |
+| RPC URL | `https://rpc.trex.xyz/` |
+| Bridge | [Arbitrum Bridge](https://bridge.arbitrum.io/?destinationChain=t-rex&sourceChain=ethereum) |
+
+### Testnet
+
+| Field | Value |
+|-------|-------|
+| Chain ID | `1962` |
+| Explorer | [https://testnet.trex.xyz/](https://testnet.trex.xyz/) |
+| RPC URL | `https://testnetrpc.trex.xyz` |
+
+## Connect with MetaMask
+
+### Add T-Rex Mainnet
+
+1. Open MetaMask and click on the network selector
+2. Click "Add Network" or "Add a network manually"
+3. Enter the following information:
+
+```
+Network Name: T-Rex Mainnet
+RPC URL: https://rpc.trex.xyz/
+Chain ID: 1628
+Currency Symbol: TREX
+Block Explorer URL: https://explorer.trex.xyz/
+```
+
+4. Click "Save" to add the network
+
+### Add T-Rex Testnet
+
+```
+Network Name: T-Rex Testnet
+RPC URL: https://testnetrpc.trex.xyz
+Chain ID: 1962
+Currency Symbol: TREX
+Block Explorer URL: https://testnet.trex.xyz/
+```
+
+## Connect with Web3.js
+
+```javascript
+const Web3 = require('web3');
+
+// Connect to T-Rex Mainnet
+const web3 = new Web3('https://rpc.trex.xyz/');
+
+// Check connection
+web3.eth.getBlockNumber().then(console.log);
+```
+
+## Connect with ethers.js
+
+```javascript
+const { ethers } = require('ethers');
+
+// Connect to T-Rex Mainnet
+const provider = new ethers.providers.JsonRpcProvider('https://rpc.trex.xyz/');
+
+// Check connection
+provider.getBlockNumber().then(console.log);
+```
+
+## Development Environment Setup
+
+### Hardhat Configuration
+
+Add T-Rex network to your `hardhat.config.js`:
+
+```javascript
+module.exports = {
+  networks: {
+    trexMainnet: {
+      url: "https://rpc.trex.xyz/",
+      chainId: 1628,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
+    },
+    trexTestnet: {
+      url: "https://testnetrpc.trex.xyz",
+      chainId: 1962,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
+    }
+  }
+};
+```
+
+### Foundry Configuration
+
+Add to `foundry.toml`:
+
+```toml
+[rpc_endpoints]
+trex_mainnet = "https://rpc.trex.xyz/"
+trex_testnet = "https://testnetrpc.trex.xyz"
+```
+
+### Truffle Configuration
+
+Add to `truffle-config.js`:
+
+```javascript
+module.exports = {
+  networks: {
+    trexMainnet: {
+      provider: () => new HDWalletProvider(
+        process.env.MNEMONIC,
+        "https://rpc.trex.xyz/"
+      ),
+      network_id: 1628,
+      gas: 5500000,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
+    trexTestnet: {
+      provider: () => new HDWalletProvider(
+        process.env.MNEMONIC,
+        "https://testnetrpc.trex.xyz"
+      ),
+      network_id: 1962,
+      gas: 5500000,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    }
+  }
+};
+```
+
+## Bridge Assets
+
+Bridge assets from Ethereum to T-Rex using the Arbitrum Bridge:
+
+<Card
+  title="Bridge to T-Rex"
+  icon="bridge"
+  href="https://bridge.arbitrum.io/?destinationChain=t-rex&sourceChain=ethereum"
+>
+  Use Arbitrum Bridge to transfer assets to T-Rex Mainnet
+</Card>
+
+## Get Test Tokens
+
+<Card
+  title="Testnet Faucet"
+  icon="faucet"
+  href="/documentation/tooling/faucets"
+>
+  Get test tokens for T-Rex Testnet
+</Card>
+
+<Tip>
+Always verify you're connected to the correct network before executing transactions. Check the Chain ID in your wallet.
+</Tip>

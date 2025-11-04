@@ -1,33 +1,171 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: "Overview"
+description: "T-Rex API参考文档概览"
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+# API Reference
 
-## Welcome
+T-Rex提供完整的REST API和RPC API，支持各种开发需求。
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+<Tip>
+参考 [docs.abs.xyz/api-reference/overview](https://docs.abs.xyz/api-reference/overview) 获取更多API文档和最佳实践。
+</Tip>
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+## API类型
 
-## Authentication
+<CardGroup cols={2}>
+  <Card title="REST API" icon="server">
+    标准HTTP REST API，支持JSON格式
+  </Card>
+  
+  <Card title="RPC API" icon="code">
+    JSON-RPC API，兼容以太坊标准
+  </Card>
+  
+  <Card title="WebSocket API" icon="satellite">
+    实时数据订阅和推送
+  </Card>
+  
+  <Card title="GraphQL API" icon="diagram-project">
+    灵活的查询接口
+  </Card>
+</CardGroup>
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+## 快速开始
+
+### 基础URL
+
+```
+REST API: https://api.trex.network/v1
+RPC API: https://mainnet.trex.network
+WebSocket: wss://mainnet.trex.network
+```
+
+### 认证
+
+大部分API端点需要认证。使用API密钥进行认证：
+
+```bash
+curl -H "Authorization: Bearer YOUR_API_KEY" \
+  https://api.trex.network/v1/endpoint
+```
+
+### 请求示例
+
+```javascript
+// REST API示例
+const response = await fetch('https://api.trex.network/v1/blocks', {
+  headers: {
+    'Authorization': 'Bearer YOUR_API_KEY',
+    'Content-Type': 'application/json'
+  }
+});
+
+const data = await response.json();
+```
+
+```javascript
+// RPC API示例
+const response = await fetch('https://mainnet.trex.network', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    jsonrpc: '2.0',
+    method: 'eth_blockNumber',
+    params: [],
+    id: 1
+  })
+});
+```
+
+## API端点
+
+### 区块和交易
+
+- `GET /blocks` - 获取区块列表
+- `GET /blocks/:hash` - 获取区块详情
+- `GET /transactions` - 获取交易列表
+- `GET /transactions/:hash` - 获取交易详情
+
+### 地址和账户
+
+- `GET /addresses/:address` - 获取地址信息
+- `GET /addresses/:address/balance` - 获取余额
+- `GET /addresses/:address/tokens` - 获取代币余额
+
+### 智能合约
+
+- `GET /contracts/:address` - 获取合约信息
+- `POST /contracts/:address/call` - 调用合约方法
+- `GET /contracts/:address/events` - 获取合约事件
+
+## 错误处理
+
+API使用标准的HTTP状态码：
+
+- `200` - 成功
+- `400` - 请求错误
+- `401` - 未认证
+- `403` - 无权限
+- `404` - 资源不存在
+- `500` - 服务器错误
+
+错误响应格式：
 
 ```json
-"security": [
-  {
-    "bearerAuth": []
+{
+  "error": {
+    "code": "ERROR_CODE",
+    "message": "Error description",
+    "details": {}
   }
-]
+}
 ```
+
+## 速率限制
+
+API有速率限制以保护服务：
+
+- **免费层**: 100请求/分钟
+- **专业层**: 1000请求/分钟
+- **企业层**: 自定义限制
+
+## SDK和工具
+
+<CardGroup cols={2}>
+  <Card title="JavaScript SDK" icon="js">
+    适用于Node.js和浏览器
+  </Card>
+  
+  <Card title="Python SDK" icon="python">
+    适用于Python应用
+  </Card>
+  
+  <Card title="Go SDK" icon="go">
+    适用于Go应用
+  </Card>
+  
+  <Card title="Postman集合" icon="postman">
+    导入Postman进行测试
+  </Card>
+</CardGroup>
+
+## 更多资源
+
+<Card
+  title="完整API文档"
+  icon="book"
+  href="/api-reference/endpoint"
+>
+  查看所有API端点详情
+</Card>
+
+<Card
+  title="交互式API探索"
+  icon="terminal"
+  href="https://api-explorer.trex.network"
+>
+  使用交互式工具探索API
+</Card>

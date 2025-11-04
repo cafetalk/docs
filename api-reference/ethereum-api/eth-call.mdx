@@ -1,0 +1,107 @@
+---
+title: "eth_call"
+description: "Executes a new message call immediately without creating a transaction on the block chain"
+api: "POST /"
+---
+
+# eth_call
+
+Executes a new message call immediately without creating a transaction on the block chain
+
+<ParamField body="body" type="object">
+  <ParamField body="jsonrpc" type="string" default="2.0" required>
+    JSON-RPC version
+  </ParamField>
+  <ParamField body="method" type="string" default="eth_call" required>
+    Method name
+  </ParamField>
+  <ParamField body="id" type="integer" default="1" required>
+    Request identifier
+  </ParamField>
+  <ParamField body="params" type="array" required>
+    <ParamField body="0" type="object" required>
+      Transaction call object
+      <ParamField body="from" type="string">
+        Address the transaction is sent from
+      </ParamField>
+      <ParamField body="to" type="string" required>
+        Address the transaction is directed to
+      </ParamField>
+      <ParamField body="gas" type="string">
+        Gas provided for the transaction execution
+      </ParamField>
+      <ParamField body="gasPrice" type="string">
+        Gas price used for each paid gas
+      </ParamField>
+      <ParamField body="value" type="string">
+        Value sent with the transaction
+      </ParamField>
+      <ParamField body="data" type="string">
+        Hash of the method signature and encoded parameters
+      </ParamField>
+    </ParamField>
+    <ParamField body="1" type="string">
+      Block number or tag (default: "latest")
+    </ParamField>
+  </ParamField>
+</ParamField>
+
+<ResponseField name="result" type="string">
+  Return value of executed contract (hex encoded)
+</ResponseField>
+
+## Example Request
+
+<CodeGroup>
+
+```bash cURL
+curl --request POST \
+  --url https://rpc.trex.xyz/ \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_call",
+  "params": [
+    {
+      "to": "0xbbB216C52f5B9095391f463AdC438d65a8aC2242",
+      "data": "0x70a082310000000000000000000000000000000000000000000000000000000000000001"
+    },
+    "latest"
+  ]
+}'
+```
+
+```javascript JavaScript
+const response = await fetch('https://rpc.trex.xyz/', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    jsonrpc: '2.0',
+    id: 1,
+    method: 'eth_call',
+    params: [{
+      to: '0xbbB216C52f5B9095391f463AdC438d65a8aC2242',
+      data: '0x70a082310000000000000000000000000000000000000000000000000000000000000001'
+    }, 'latest']
+  })
+});
+
+const data = await response.json();
+console.log('Result:', data.result);
+```
+
+</CodeGroup>
+
+## Example Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "result": "0x0000000000000000000000000000000000000000000000000000000000000001",
+  "id": 1
+}
+```
+

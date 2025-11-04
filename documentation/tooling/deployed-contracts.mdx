@@ -1,0 +1,95 @@
+---
+title: "Deployed Contracts"
+description: "List of deployed contracts on T-Rex Chain"
+---
+
+# Deployed Contracts
+
+This document lists all deployed system contracts and important contract addresses on T-Rex Chain.
+
+## System Contracts
+
+### Mainnet Contract Addresses
+
+| Contract Name | Address | Description |
+|--------------|---------|-------------|
+| T-Rex Passport | `0xbbB216C52f5B9095391f463AdC438d65a8aC2242` | Universal on-chain DID for users |
+| T-Rex Badge | `0x6F52cCCfAb0712Db45C31863B262e2683097bb5c` | Badge validation and minting system |
+
+### Testnet Contract Addresses
+
+| Contract Name | Address | Description |
+|--------------|---------|-------------|
+| T-Rex Passport | `0x06fAb5a4e177fefE5Cc15dc41C64Ba933021418a` | Universal on-chain DID for users |
+| T-Rex Badge | `0xa51B53Dc3aA7f4ef5fE9bb429521a73f411ad867` | Badge validation and minting system |
+
+## Contract Verification
+
+All system contracts are verified and publicly auditable. You can view the source code on the block explorer:
+
+<Card
+  title="View on Explorer"
+  icon="magnifying-glass"
+  href="/documentation/tooling/block-explorers"
+>
+  View verified contracts on the block explorer
+</Card>
+
+## Interacting with Contracts
+
+### Using Block Explorer
+
+1. Visit the [block explorer](https://explorer.trex.xyz/)
+2. Search for the contract address
+3. View contract details and ABI
+4. Interact directly with the contract
+
+### Using Code
+
+```javascript
+const { ethers } = require('ethers');
+
+const provider = new ethers.providers.JsonRpcProvider('https://rpc.trex.xyz/');
+
+// T-Rex Passport
+const passportAddress = '0xbbB216C52f5B9095391f463AdC438d65a8aC2242';
+const passportABI = [/* ABI */];
+
+const passport = new ethers.Contract(passportAddress, passportABI, provider);
+
+// Get linked wallets
+const wallets = await passport.getLinkedWallets(userAddress);
+
+// T-Rex Badge
+const badgeAddress = '0x6F52cCCfAb0712Db45C31863B262e2683097bb5c';
+const badgeABI = [/* ABI */];
+
+const badge = new ethers.Contract(badgeAddress, badgeABI, provider);
+
+// Check user badges
+const hasBadge = await badge.hasBadge(userAddress, badgeId);
+```
+
+## Contract ABIs
+
+Contract ABIs are available:
+
+- On the block explorer (for verified contracts)
+- In the [T-Rex SDKs](/documentation/build-on-trex/applications)
+- In the [GitHub repository](https://github.com/trex-network)
+
+## Open Source
+
+All system contracts are:
+
+- **Open Source**: Source code available on GitHub
+- **Verified**: Verified on the block explorer
+- **Auditable**: Fully auditable and transparent
+
+<Tip>
+Use the [T-Rex SDKs](/documentation/build-on-trex/applications) for easier integration instead of interacting with contracts directly.
+</Tip>
+
+<Warning>
+Always verify contract addresses before interacting with them. Double-check against the official documentation.
+</Warning>

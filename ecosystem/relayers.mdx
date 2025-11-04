@@ -1,0 +1,152 @@
+---
+title: "Relayers"
+description: "Relayer services for cross-chain communication on T-Rex Chain"
+---
+
+# Relayers
+
+Relayer services enable cross-chain message passing and communication between T-Rex Chain and other blockchain networks.
+
+## Overview
+
+Relayers are infrastructure services that facilitate:
+
+- **Cross-Chain Messages**: Send messages between chains
+- **State Synchronization**: Keep state consistent across chains
+- **Event Propagation**: Relay events from one chain to another
+- **Data Availability**: Ensure data is available across chains
+
+## How Relayers Work
+
+<Steps>
+  <Step title="Message Origination">
+    A message is created on the source chain
+  </Step>
+  
+  <Step title="Relayer Detection">
+    Relayers monitor and detect the message
+  </Step>
+  
+  <Step title="Verification">
+    Relayers verify the message validity
+  </Step>
+  
+  <Step title="Delivery">
+    Message is delivered to the destination chain
+  </Step>
+  
+  <Step title="Confirmation">
+    Transaction is confirmed on the destination chain
+  </Step>
+</Steps>
+
+## Relayer Types
+
+### Official Relayers
+
+T-Rex provides official relayers for core cross-chain functionality:
+
+- **Bridge Relayers**: Relay bridge transactions
+- **State Relayers**: Relay state updates
+- **Event Relayers**: Relay contract events
+
+### Decentralized Relayers
+
+Community-operated relayers provide additional options:
+
+- **Permissionless Operation**: Anyone can run a relayer
+- **Incentivized**: Rewards for successful relays
+- **Redundant**: Multiple relayers ensure reliability
+
+### Third-Party Relayers
+
+Third-party services may offer specialized relayer services:
+
+- **Enterprise Relayers**: High-availability relayer services
+- **Custom Relayers**: Specialized relay solutions
+- **Multi-Chain Relayers**: Support for multiple chains
+
+## Relayer Features
+
+<CardGroup cols={2}>
+  <Card title="Reliability" icon="shield">
+    High availability and uptime guarantees
+  </Card>
+  
+  <Card title="Speed" icon="bolt">
+    Fast message delivery and confirmation
+  </Card>
+  
+  <Card title="Security" icon="lock">
+    Secure message verification and validation
+  </Card>
+  
+  <Card title="Cost Efficiency" icon="coins">
+    Optimized gas usage and fees
+  </Card>
+</CardGroup>
+
+## Use Cases
+
+### Cross-Chain Applications
+
+- Send messages between chains
+- Synchronize state across networks
+- Enable cross-chain composability
+
+### Bridge Operations
+
+- Relay bridge transactions
+- Verify cross-chain transfers
+- Maintain bridge state
+
+### Event Broadcasting
+
+- Propagate events across chains
+- Enable cross-chain notifications
+- Support multi-chain applications
+
+## Running Your Own Relayer
+
+### Requirements
+
+- Node infrastructure
+- RPC access to source and destination chains
+- Monitoring and alerting systems
+
+### Setup
+
+```bash
+# Clone relayer repository
+git clone https://github.com/trex-network/relayer.git
+cd relayer
+
+# Configure relayer
+cp config.example.toml config.toml
+# Edit config.toml with your settings
+
+# Start relayer
+./relayer --config config.toml
+```
+
+### Configuration
+
+Relayer configuration includes:
+
+- Source and destination chain RPC endpoints
+- Message filters and routing rules
+- Gas price and fee settings
+- Monitoring and logging options
+
+<Tip>
+Running a relayer can be profitable through fees and incentives, while also supporting the T-Rex ecosystem.
+</Tip>
+
+<Card
+  title="Relayer Documentation"
+  icon="book"
+  href="https://github.com/trex-network/relayer"
+>
+  View detailed relayer setup and operation documentation
+</Card>
+

@@ -1,0 +1,92 @@
+---
+title: "eth_getBlockByNumber"
+description: "Returns information about a block by block number"
+api: "POST /"
+---
+
+# eth_getBlockByNumber
+
+Returns information about a block by block number
+
+<ParamField body="body" type="object">
+  <ParamField body="jsonrpc" type="string" default="2.0" required>
+    JSON-RPC version
+  </ParamField>
+  <ParamField body="method" type="string" default="eth_getBlockByNumber" required>
+    Method name
+  </ParamField>
+  <ParamField body="id" type="integer" default="1" required>
+    Request identifier
+  </ParamField>
+  <ParamField body="params" type="array" required>
+    <ParamField body="0" type="string" required>
+      Block number (hex) or tag ("latest", "earliest", "pending")
+    </ParamField>
+    <ParamField body="1" type="boolean" default="false">
+      If true, returns full transaction objects; if false, returns transaction hashes
+    </ParamField>
+  </ParamField>
+</ParamField>
+
+<ResponseField name="result" type="object">
+  Block object with transaction data
+</ResponseField>
+
+## Example Request
+
+<CodeGroup>
+
+```bash cURL
+curl --request POST \
+  --url https://rpc.trex.xyz/ \
+  --header 'Content-Type: application/json' \
+  --data '{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "eth_getBlockByNumber",
+  "params": [
+    "latest",
+    false
+  ]
+}'
+```
+
+```javascript JavaScript
+const response = await fetch('https://rpc.trex.xyz/', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    jsonrpc: '2.0',
+    id: 1,
+    method: 'eth_getBlockByNumber',
+    params: ['latest', false]
+  })
+});
+
+const data = await response.json();
+console.log('Block:', data.result);
+```
+
+</CodeGroup>
+
+## Example Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "number": "0x1a2b3c",
+    "hash": "0x...",
+    "parentHash": "0x...",
+    "timestamp": "0x...",
+    "transactions": [],
+    "gasUsed": "0x...",
+    "gasLimit": "0x...",
+    "baseFeePerGas": "0x..."
+  },
+  "id": 1
+}
+```
+

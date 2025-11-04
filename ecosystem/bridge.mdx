@@ -1,0 +1,113 @@
+---
+title: "Bridge"
+description: "Cross-chain bridge services for T-Rex Chain"
+---
+
+# Bridge
+
+Cross-chain bridge services enable seamless asset transfers between T-Rex Chain and other blockchain networks.
+
+## Official Bridge
+
+### Arbitrum Bridge
+
+The official bridge for T-Rex Chain is integrated with the Arbitrum Bridge infrastructure.
+
+**Bridge URL**: [https://bridge.arbitrum.io/?destinationChain=t-rex&sourceChain=ethereum](https://bridge.arbitrum.io/?destinationChain=t-rex&sourceChain=ethereum)
+
+### Supported Chains
+
+- **Ethereum** ↔ **T-Rex Mainnet**
+- Additional chains coming soon
+
+### Supported Assets
+
+- Native ETH
+- ERC-20 tokens (USDC, USDT, and more)
+- Additional tokens as they become available
+
+## How Bridge Works
+
+<Steps>
+  <Step title="Initiate Transfer">
+    Select source chain, destination chain, and asset amount
+  </Step>
+  
+  <Step title="Lock Assets">
+    Assets are locked on the source chain
+  </Step>
+  
+  <Step title="Verification">
+    Bridge verifies the transaction on the source chain
+  </Step>
+  
+  <Step title="Mint on Destination">
+    Equivalent assets are minted on T-Rex Chain
+  </Step>
+  
+  <Step title="Receive Assets">
+    Assets appear in your wallet on T-Rex Chain
+  </Step>
+</Steps>
+
+## Bridge Features
+
+<CardGroup cols={2}>
+  <Card title="Security" icon="shield">
+    Audited and battle-tested bridge infrastructure
+  </Card>
+  
+  <Card title="Low Fees" icon="coins">
+    Competitive bridge fees for asset transfers
+  </Card>
+  
+  <Card title="Fast Transfer" icon="bolt">
+    Quick transfer times with optimized confirmation
+  </Card>
+  
+  <Card title="Non-Custodial" icon="lock">
+    Your assets remain in your control throughout
+  </Card>
+</CardGroup>
+
+## Bridge Time
+
+- **Estimated Time**: 5-10 minutes for standard bridges
+- **Confirmation Blocks**: Requires confirmations on both chains
+- **Status Tracking**: Track bridge status on the explorer
+
+## Bridge Fees
+
+- **Bridge Fee**: Minimal fee for the bridge service
+- **Gas Fees**: Standard gas fees apply on both chains
+- **Total Cost**: Displayed before confirmation
+
+## Using the Bridge
+
+1. Visit the [Arbitrum Bridge](https://bridge.arbitrum.io/?destinationChain=t-rex&sourceChain=ethereum)
+2. Connect your wallet
+3. Select source and destination chains
+4. Choose the asset and amount
+5. Review and confirm the transaction
+6. Wait for confirmations on both chains
+
+<Warning>
+Always verify you're using the official bridge URL. Double-check the domain before connecting your wallet.
+</Warning>
+
+<Tip>
+For testnet, use the testnet explorer to find test tokens. The mainnet bridge is for production use only.
+</Tip>
+
+## Alternative Bridge Services
+
+Additional bridge services may be available. Check the ecosystem for third-party bridge providers.
+
+<Card
+  title="View Block Explorer"
+  icon="magnifying-glass"
+  href="/documentation/tooling/block-explorers"
+>
+  Track bridge transactions on the block explorer
+</Card>
+

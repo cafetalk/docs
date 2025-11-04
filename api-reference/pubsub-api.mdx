@@ -1,0 +1,157 @@
+---
+title: "PubSub API"
+description: "Subscription and event methods for real-time updates"
+---
+
+# PubSub API
+
+Subscription and event methods for real-time updates using WebSocket connections.
+
+## Available Methods
+
+- **eth_subscribe** - Subscribes to events
+- **eth_unsubscribe** - Unsubscribes from events
+
+## WebSocket Endpoint
+
+```
+Mainnet: wss://rpc.trex.xyz/
+Testnet: wss://testnetrpc.trex.xyz
+```
+
+## eth_subscribe
+
+Subscribes to specific events. Available subscription types:
+
+- **newHeads** - Fires when a new block header is added
+- **logs** - Fires when logs matching a filter are added
+- **newPendingTransactions** - Fires when pending transactions are added
+- **syncing** - Fires when synchronization status changes
+
+### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "eth_subscribe",
+  "params": [
+    "newHeads"
+  ],
+  "id": 1
+}
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "result": "0x9cef478923ff08bf67fde6c64013158af",
+  "id": 1
+}
+```
+
+### Subscription Notifications
+
+After subscription, you'll receive notifications:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "eth_subscription",
+  "params": {
+    "subscription": "0x9cef478923ff08bf67fde6c64013158af",
+    "result": {
+      "number": "0x1a2b3c",
+      "hash": "0x...",
+      "parentHash": "0x...",
+      "timestamp": "0x..."
+    }
+  }
+}
+```
+
+## eth_subscribe logs
+
+Subscribe to logs matching a filter:
+
+### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "eth_subscribe",
+  "params": [
+    "logs",
+    {
+      "address": "0xbbB216C52f5B9095391f463AdC438d65a8aC2242",
+      "topics": ["0x..."]
+    }
+  ],
+  "id": 1
+}
+```
+
+## eth_unsubscribe
+
+Unsubscribes from a subscription:
+
+### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "eth_unsubscribe",
+  "params": [
+    "0x9cef478923ff08bf67fde6c64013158af"
+  ],
+  "id": 1
+}
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "result": true,
+  "id": 1
+}
+```
+
+## Example: JavaScript WebSocket Client
+
+```javascript
+const WebSocket = require('ws');
+
+const ws = new WebSocket('wss://rpc.trex.xyz/');
+
+ws.on('open', () => {
+  ws.send(JSON.stringify({
+    jsonrpc: '2.0',
+    method: 'eth_subscribe',
+    params: ['newHeads'],
+    id: 1
+  }));
+});
+
+ws.on('message', (data) => {
+  const message = JSON.parse(data);
+  if (message.method === 'eth_subscription') {
+    console.log('New block:', message.params.result);
+  }
+});
+```
+
+<Tip>
+WebSocket connections are persistent. Keep the connection alive to receive real-time updates.
+</Tip>
+
+<Card
+  title="View JSON-RPC API"
+  icon="code"
+  href="/api-reference/overview/trex-json-rpc-api"
+>
+  See the complete API reference
+</Card>
+

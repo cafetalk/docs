@@ -1,0 +1,216 @@
+T-Rex Technical Architecture
+Overview
+
+1. T-Rex Chain Layer Technical Architecture
+The T-Rex Chain is an innovative Layer 2 (L2) solution designed to enhance the scalability,
+security, and interoperability of the Ethereum ecosystem. Built as an EVM-compatible
+Optimistic Rollup, it processes transactions off-chain and assumes they are valid by
+default. This allows for massive scaling and low transaction costs. Fraud proofs are used
+to identify and challenge invalid transactions within a specific window, ensuring that the
+chain remains secure by inheriting the robust security of the Ethereum mainnet. Our
+architecture is designed to be fully decentralized from the ground up, ensuring resilience
+and censorship resistance.
+Core Components of the T-Rex Chain:
+● Execution Layer (EVM-compatible Optimistic Rollup): Our execution environment is a
+high-performance Optimistic Rollup that processes transactions off-chain. This
+allows for massive scaling, processing thousands of transactions per second (TPS)
+while submitting a single, concise proof to the Ethereum mainnet. The EVM-
+compatible design ensures seamless migration and development for existing Ethereum
+dApps and smart contracts.
+● Sequencer Layer (Decentralized): Unlike centralized L2s, the T-Rex Chain employs a
+decentralized network of sequencers. These nodes are responsible for collecting,
+ordering, and batching transactions into blocks. This decentralized approach prevents
+single points of failure, mitigates front-running and MEV (Maximal Extractable Value)
+risks, and ensures the network remains permissionless and robust. Sequencers are
+selected and rewarded through a transparent, on-chain mechanism.
+● Data Availability Layer (Decentralized): Transaction data is published to a
+decentralized data availability (DA) layer to ensure that any network participant can
+reconstruct the full state of the T-Rex Chain. This is a crucial security feature that
+allows for permissionless state validation and enables fast withdrawals. By separating
+data publication from transaction execution, we significantly reduce the costs of data
+storage and further enhance scalability.
+Chain Layer Architecture Diagram
+
+Tooling Information
+As the tooling layer of the ecosystem, we are committed to providing comprehensive
+support for developers. Here is the chain information for both the T-Rex Mainnet and
+Testnet to facilitate your integration and development.
+Field Mainnet Testnet
+Chain ID 1628 1962
+Explorer https://explorer.trex.xyz/ https://testnet.trex.xyz/
+RPC URL https://rpc.trex.xyz/ https://testnetrpc.trex.xyz
+Bridge https://bridge.arbitrum.io/
+?destinationChain=t-
+rex&sourceChain=ethereu
+N/A
+m
+Altlayer https://rollup-
+info.altlayer.io/matter-
+generate-
+parade/trex_mainnet
+N/A
+2. 5D T-Rex Persona Ecosystem Technical
+Architecture
+The 5D T-Rex Persona Ecosystem is a multi-faceted system designed to transform a
+static on-chain identity into a dynamic, multi-dimensional digital persona.
+2.1 T-Rex Passport: The Universal On-Chain DID
+The T-Rex Passport is a singular, on-chain Decentralized Identifier (DID) for each user. It
+is a publicly visible smart contract that serves as the nexus of a user's digital life. Users
+can link multiple wallet addresses from various blockchain ecosystems, including EVM-
+compatible chains (like Ethereum, Polygon) and Solana. The T-Rex Passport also supports
+the binding of Web2 social accounts, creating a comprehensive and interoperable identity.
+2.2 T-Rex Badge System: A Comprehensive Validation Engine
+The T-Rex Badge System is a publicly visible, smart contract-based ecosystem that
+validates and mints badges based on a user's on-chain and off-chain activities. The
+system leverages three core types of validators:
+On-Chain Data Validators This suite of validators analyzes a user's on-chain data across
+multiple networks to verify credentials.
+● NFT Validator: Supports both ERC-721 and ERC-1155 data standards. It allows for the
+flexible configuration of validation conditions based on a user's NFT metadata,
+transfer history, holding duration, and DeFi transaction behavior. This enables the
+creation of badges for NFT collectors and digital art enthusiasts.
+● Token Validator: This validator supports assets on Ethereum, EVM-compatible chains,
+and Solana. It provides a robust framework to create validation conditions based on a
+user's wallet balances, transaction history, and asset holding duration. This is
+essential for recognizing a user's financial contributions and stability.
+● Web3 Validator: This validator tracks specific, verifiable on-chain behaviors, such as a
+user's interactions with designated smart contracts. It's a powerful tool for rewarding
+protocol participation and dApp usage.
+ZKTLS Validator
+In deep collaboration with the Reclaim Protocol, the T-Rex Extension allows users to
+privately verify their Web2 assets and identities using Zero-Knowledge and TLS proofs.
+This validator enables the creation of badges based on a wide range of sensitive data
+without revealing the underlying information. Validated credentials include:
+● Financial Standing: CEX total assets, CEX VIP levels.
+● Social Influence: Follower counts on TikTok, Facebook, Instagram, and Twitch;
+Instagram "Bluetick" verification.
+● Digital Presence: YouTube subscriber count, GitHub stars.
+● Membership & Subscriptions: Premium memberships for Telegram, ChatGPT, Gemini,
+Grok, Perplexity, Claude, PS Plus, Xbox Game Pass, Nintendo Switch Online, Spotify,
+YouTube, Apple Music, Netflix, and Amazon Prime; Steam game ownership count.
+Ecosystem Validator
+This validator is designed to reward user participation within the T-Rex ecosystem itself. It
+facilitates the creation of badges for:
+● Early Bird Badges: Rewards for early adopters.
+● Event Badges: Recognizes participation in specific events, such as the "Asia Tour."
+● Student Identity Verification: Allows for the verification of student status for
+educational incentives.
+● Eligible Validators: Customizable validators for tasks like determining multi-stage NFT
+minting eligibility.
+Social Validator
+This system supports a range of Web2 social media interactions, from simply linking a
+social account to a T-Rex Passport to tracking specific behaviors like follows and posts,
+providing a holistic view of a user's social footprint.
+2.3 Ecosystem Points
+Ecosystem Points are a centrally stored asset within the T-Rex Passport. They are
+designed to be a direct reflection of a user's engagement and activity within the
+ecosystem.
+● Each badge minted has a corresponding point value.
+● Different social tasks also have specific point values.
+● This comprehensive user point and task system provides a dynamic metric for user
+activity, engagement, and contribution, serving as a secondary asset class within the
+T-Rex Passport.
+3. Open Ecosystem
+The T-Rex ecosystem is designed to be open and interoperable, with a focus on
+empowering DApp developers and projects.
+● Smart Contracts: Our relevant contracts will be made public and verified, allowing for
+full transparency and audibility.
+Contract Mainnet Address Testnet Address
+T-REX Passport 0xbbB216C52f5B9095391f
+463AdC438d65a8aC2242
+0x06fAb5a4e177fefE5Cc1
+5dc41C64Ba933021418a
+T-Rex Badge 0x6F52cCCfAb0712Db45C
+31863B262e2683097bb5c
+t0xa51B53Dc3aA7f4ef5fE
+9bb429521a73f411ad867
+● Open SDKs: We provided comprehensive open SDKs to facilitate rapid integration.
+○ T-Rex Passport SDK: Allows developers to easily integrate T-Rex Passport into
+their applications, enabling DID login and identity management.
+○ T-Rex Badge SDK: Provides tools for DApp developers to create their own
+custom badge systems, allowing them to better understand and segment their
+user base based on verifiable credentials and behaviors.
+4. The Economic Symbiosis Engine: Unlocking a New
+Web3 Paradigm
+The T-Rex Passport, a living digital identity, is composed of a vast, multi-dimensional
+dataset including on-chain badges and off-chain points. This data represents a user's
+unique journey and interactions across the web. The T-Rex Economic Symbiosis Engine, a
+sophisticated backend system, is designed to transform this raw data into actionable
+insights, creating a powerful User Data Magic experience that benefits both users and
+projects.
+The Technical Foundation: Big Data, AI, and BI
+Our economic symbiosis engine is built on a robust technical stack that integrates three
+key components:
+● Big Data: We process and store a massive volume of user behavioral data,
+encompassing on-chain activities (transaction history, asset holdings, dApp
+interactions) and off-chain proofs (Web2 social and membership data from ZKTLS
+validators). This data lake provides a comprehensive view of a user's digital footprint.
+● Artificial Intelligence (AI): Machine learning models are the core of our engine. They
+analyze the collected data to build a detailed and dynamic user persona graph. This
+graph goes beyond simple data points, identifying patterns, interests, and potential
+future behaviors. For example, a model might predict a user's interest in a new
+GameFi launch based on their NFT holdings, Steam game library, and activity in
+similar protocols.
+● Business Intelligence (BI): The AI-generated insights are then presented through a
+Business Intelligence layer. DApps and projects can access a user-friendly dashboard
+to define their ideal user profile using a simple query language. For example, a project
+could search for "users with high DeFi activity AND a CEX VIP Level > 3 AND a 'Social
+Validator' badge for Twitch followers > 10,000." This BI layer translates complex data
+into simple, actionable strategies.
+Technical Architecture of the Engine
+The Economic Symbiosis Engine is architected as a microservices-based, event-driven
+system to ensure scalability, flexibility, and real-time processing of user data.
+1. Data Ingestion Layer: This layer is responsible for collecting data from various
+sources:
+○ On-Chain Listeners: Real-time listeners monitor T-Rex Passport and Badge
+contracts for new mints, updates, and on-chain interactions.
+○ Off-Chain API Gateways: Secure, private gateways receive data from our ZKTLS
+and Social Validators.
+○ Batch Processors: Historical on-chain data is periodically ingested to build initial
+user profiles.
+2. Data Processing Pipeline: Once ingested, data flows through a pipeline of services for
+cleaning, normalization, and transformation into a unified format. This pipeline is built
+using a pub/sub model to handle high throughput and ensure data integrity.
+3. User Persona Graph Service: This is the core of our AI component. It's a graph
+database that stores the user personas, their relationships to different badges, and
+the associated data points. Our AI models continuously update this graph based on
+new data and behavioral patterns.
+4. Matching & Ranking Service: This service executes the Persona Matching Score (PMS)
+algorithm. It takes a project's criteria as input, queries the User Persona Graph
+Service, and returns a ranked list of users based on their computed PMS. This service
+is optimized for low-latency queries to support real-time marketing applications.
+5. BI & Analytics Layer: A set of APIs and dashboards that allow projects to interact with
+the Matching & Ranking Service and visualize user data. This layer provides tools for
+cohort analysis, A/B testing, and campaign performance tracking.
+The Dual-Benefit Ecosystem: A New Economic Model
+The T-Rex Economic Symbiosis Engine creates a symbiotic relationship, fostering a two-
+way benefit model that fundamentally changes economic efficiency in Web3.
+For the User:
+The engine acts as a self-discovery tool. By interacting with the T-Rex ecosystem, users
+accumulate badges and points that paint a complete, verifiable picture of their digital self.
+They can use the T-Rex Passport as a personal BI dashboard to understand their own
+history, asset composition, and contributions. Instead of passively waiting for opportunities,
+they are proactively matched with projects and communities that align with their interests,
+skills, and values.
+For the Project:
+Projects can move beyond broad, expensive, and inefficient marketing campaigns. The
+engine allows for precision targeting, enabling them to find and engage with their most
+valuable users at a fraction of the cost. The data-driven insights eliminate guesswork,
+ensuring that every marketing dollar and community effort is spent on users who are most
+likely to be genuinely interested and become long-term contributors. This creates a highly
+efficient, high-conversion marketing channel.
+The Algorithm: A Simple Look
+At the core of the Economic Symbiosis Engine is a Persona Matching Score (PMS), a
+metric that quantifies the alignment between a user's persona and a project's target
+profile. The formula is:
+Where:
+● n is the number of defined criteria by the project.
+● wi​ is the weight assigned to each criterion i (e.g., a project might weigh "DeFi
+activity" more than "Twitch followers").
+● V(Ci​ ) is a value function that evaluates a user's data against criterion i. This
+function can be a simple binary (0 or 1), a scaled value (0-100), or a logarithmic
+function for non-linear data like follower counts.
+The engine then returns a list of T-Rex Passport holders ranked by their PMS, enabling
+projects to conduct highly precise, on-chain marketing and engagement. This innovative
+system breaks the traditional marketing "impossible trinity," proving that efficiency,
+precision, and user value can all be achieved simultaneously.

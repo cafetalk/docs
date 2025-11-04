@@ -1,0 +1,110 @@
+---
+title: "Debug API"
+description: "Debug and trace methods for transaction and block analysis"
+---
+
+# Debug API
+
+Debug and trace methods for transaction and block analysis on T-Rex Chain.
+
+## Available Methods
+
+### Trace Methods
+
+- **debug_traceBlockByHash** - Traces all transactions in a block by hash
+- **debug_traceBlockByNumber** - Traces all transactions in a block by number
+- **debug_traceTransaction** - Traces a transaction by hash
+- **debug_traceCall** - Traces a call without creating a transaction
+
+## Base URL
+
+```
+Mainnet: https://rpc.trex.xyz/
+Testnet: https://testnetrpc.trex.xyz
+```
+
+## debug_traceTransaction
+
+Traces a transaction by hash, providing detailed execution information.
+
+### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "debug_traceTransaction",
+  "params": [
+    "0x...",
+    {
+      "tracer": "callTracer",
+      "tracerConfig": {
+        "onlyTopCall": false
+      }
+    }
+  ],
+  "id": 1
+}
+```
+
+### Response
+
+```json
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "from": "0x...",
+    "gas": "0x...",
+    "gasUsed": "0x...",
+    "to": "0x...",
+    "input": "0x...",
+    "output": "0x...",
+    "calls": []
+  },
+  "id": 1
+}
+```
+
+## debug_traceCall
+
+Traces a call without creating a transaction on the blockchain.
+
+### Request
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "debug_traceCall",
+  "params": [
+    {
+      "to": "0x...",
+      "data": "0x..."
+    },
+    "latest",
+    {
+      "tracer": "callTracer"
+    }
+  ],
+  "id": 1
+}
+```
+
+## Tracer Options
+
+Available tracers:
+
+- **callTracer** - Returns a trace of all call frames
+- **prestateTracer** - Returns the pre-state of the transaction
+- **4byteTracer** - Returns 4-byte function selectors
+
+<Warning>
+Debug APIs are computationally expensive and may have rate limits. Use them sparingly.
+</Warning>
+
+<Card
+  title="View JSON-RPC API"
+  icon="code"
+  href="/api-reference/overview/trex-json-rpc-api"
+>
+  See the complete API reference
+</Card>
+

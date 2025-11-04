@@ -1,0 +1,172 @@
+---
+title: "System Contracts"
+description: "Learn about the system contracts deployed on T-Rex Chain"
+---
+
+# System Contracts
+
+T-Rex Chain includes several system contracts that provide core functionality for the network and ecosystem.
+
+## T-Rex Passport Contract
+
+The T-Rex Passport is a universal on-chain Decentralized Identifier (DID) for each user. It is a publicly visible smart contract that serves as the nexus of a user's digital life.
+
+### Contract Addresses
+
+| Network | Address |
+|---------|---------|
+| Mainnet | `0xbbB216C52f5B9095391f463AdC438d65a8aC2242` |
+| Testnet | `0x06fAb5a4e177fefE5Cc15dc41C64Ba933021418a` |
+
+### Key Features
+
+- **Multi-Wallet Linking**: Links multiple wallet addresses from EVM chains and Solana
+- **Web2 Social Binding**: Binds Web2 social accounts for comprehensive identity
+- **Public Visibility**: All passport data is publicly visible on-chain
+- **Interoperable**: Designed for cross-chain and cross-platform compatibility
+
+### Interface
+
+```solidity
+interface ITRexPassport {
+    function linkWallet(address wallet) external;
+    function unlinkWallet(address wallet) external;
+    function linkSocialAccount(string memory platform, string memory accountId) external;
+    function getLinkedWallets(address user) external view returns (address[] memory);
+    function getSocialAccounts(address user) external view returns (SocialAccount[] memory);
+}
+```
+
+## T-Rex Badge Contract
+
+The T-Rex Badge System is a publicly visible, smart contract-based ecosystem that validates and mints badges based on a user's on-chain and off-chain activities.
+
+### Contract Addresses
+
+| Network | Address |
+|---------|---------|
+| Mainnet | `0x6F52cCCfAb0712Db45C31863B262e2683097bb5c` |
+| Testnet | `0xa51B53Dc3aA7f4ef5fE9bb429521a73f411ad867` |
+
+### Badge Validators
+
+The system leverages multiple types of validators:
+
+#### On-Chain Data Validators
+
+- **NFT Validator**: Supports ERC-721 and ERC-1155 standards
+  - Validates NFT metadata, transfer history, holding duration
+  - Tracks DeFi transaction behavior
+  
+- **Token Validator**: Supports Ethereum, EVM chains, and Solana
+  - Validates wallet balances and transaction history
+  - Tracks asset holding duration
+  
+- **Web3 Validator**: Tracks verifiable on-chain behaviors
+  - Monitors interactions with designated smart contracts
+  - Rewards protocol participation
+
+#### ZKTLS Validator
+
+In collaboration with Reclaim Protocol, enables private verification of Web2 assets:
+
+- Financial standing (CEX assets, VIP levels)
+- Social influence (follower counts, verification status)
+- Digital presence (subscriber counts, GitHub stars)
+- Memberships and subscriptions
+
+#### Ecosystem Validator
+
+Rewards participation within the T-Rex ecosystem:
+
+- Early Bird Badges
+- Event Badges
+- Student Identity Verification
+- Custom eligibility validators
+
+#### Social Validator
+
+Tracks Web2 social media interactions:
+
+- Account linking
+- Follow behavior
+- Post activity
+
+### Interface
+
+```solidity
+interface ITRexBadge {
+    function mintBadge(address user, uint256 badgeId) external;
+    function hasBadge(address user, uint256 badgeId) external view returns (bool);
+    function getUserBadges(address user) external view returns (uint256[] memory);
+    function createBadge(BadgeMetadata memory metadata) external returns (uint256);
+}
+```
+
+## Ecosystem Points
+
+Ecosystem Points are centrally stored within the T-Rex Passport:
+
+- **Badge-Based Points**: Each badge has a corresponding point value
+- **Social Task Points**: Different social tasks have specific point values
+- **Dynamic Metric**: Reflects user activity, engagement, and contribution
+- **Secondary Asset**: Serves as a secondary asset class within the Passport
+
+## Contract Verification
+
+All system contracts are verified and publicly auditable:
+
+<Card
+  title="View on Explorer"
+  icon="magnifying-glass"
+  href="/documentation/tooling/block-explorers"
+>
+  View verified contracts on the block explorer
+</Card>
+
+## Integration
+
+### Using the Contracts
+
+```javascript
+const { ethers } = require('ethers');
+
+const provider = new ethers.providers.JsonRpcProvider('https://rpc.trex.xyz/');
+
+// T-Rex Passport
+const passportAddress = '0xbbB216C52f5B9095391f463AdC438d65a8aC2242';
+const passportABI = [/* ABI */];
+const passport = new ethers.Contract(passportAddress, passportABI, provider);
+
+// Check linked wallets
+const wallets = await passport.getLinkedWallets(userAddress);
+
+// T-Rex Badge
+const badgeAddress = '0x6F52cCCfAb0712Db45C31863B262e2683097bb5c';
+const badgeABI = [/* ABI */];
+const badge = new ethers.Contract(badgeAddress, badgeABI, provider);
+
+// Check user badges
+const hasBadge = await badge.hasBadge(userAddress, badgeId);
+const badges = await badge.getUserBadges(userAddress);
+```
+
+## Open Ecosystem
+
+T-Rex ecosystem is designed to be open and interoperable:
+
+- **Public Contracts**: All relevant contracts are public and verified
+- **Open SDKs**: Comprehensive SDKs for easy integration
+- **Transparency**: Full transparency and audibility
+
+<Card
+  title="Deployed Contracts"
+  icon="list"
+  href="/documentation/tooling/deployed-contracts"
+>
+  View complete list of deployed contracts
+</Card>
+
+<Tip>
+Use the [T-Rex SDKs](/documentation/build-on-trex/applications) for easier integration instead of interacting with contracts directly.
+</Tip>

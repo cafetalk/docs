@@ -1,0 +1,202 @@
+---
+title: "Applications"
+description: "Build applications on T-Rex with T-Rex Passport SDK and Badge SDK"
+---
+
+# Applications
+
+Build applications that leverage the T-Rex ecosystem, including T-Rex Passport, Badge System, and the Economic Symbiosis Engine.
+
+## T-Rex Passport SDK
+
+The T-Rex Passport SDK allows developers to easily integrate T-Rex Passport into their applications, enabling DID login and identity management.
+
+### Installation
+
+```bash
+npm install @trex/passport-sdk
+```
+
+### Basic Usage
+
+```javascript
+import { PassportSDK } from '@trex/passport-sdk';
+
+// Initialize SDK
+const passport = new PassportSDK({
+  rpcUrl: 'https://rpc.trex.xyz/',
+  passportAddress: '0xbbB216C52f5B9095391f463AdC438d65a8aC2242'
+});
+
+// Get user's passport
+const userPassport = await passport.getPassport(userAddress);
+
+// Check if user has a badge
+const hasBadge = await passport.hasBadge(userAddress, badgeId);
+
+// Get all badges for a user
+const badges = await passport.getBadges(userAddress);
+```
+
+### DID Login
+
+```javascript
+// Request user to connect passport
+const passport = await passportSDK.connect();
+
+// Authenticate user
+const isAuthenticated = await passportSDK.authenticate(passport.address);
+
+if (isAuthenticated) {
+  // User is authenticated with their T-Rex Passport
+  console.log('User DID:', passport.did);
+}
+```
+
+## T-Rex Badge SDK
+
+The T-Rex Badge SDK provides tools for DApp developers to create their own custom badge systems.
+
+### Installation
+
+```bash
+npm install @trex/badge-sdk
+```
+
+### Create Custom Badges
+
+```javascript
+import { BadgeSDK } from '@trex/badge-sdk';
+
+const badgeSDK = new BadgeSDK({
+  rpcUrl: 'https://rpc.trex.xyz/',
+  badgeAddress: '0x6F52cCCfAb0712Db45C31863B262e2683097bb5c'
+});
+
+// Define badge criteria
+const badgeCriteria = {
+  name: 'DeFi Enthusiast',
+  description: 'User has interacted with DeFi protocols',
+  validator: 'onChain',
+  conditions: {
+    minDeFiTransactions: 10,
+    minTVL: 1000
+  }
+};
+
+// Create badge
+const badgeId = await badgeSDK.createBadge(badgeCriteria);
+```
+
+### Validate and Mint Badges
+
+```javascript
+// Validate user eligibility
+const isEligible = await badgeSDK.validate(userAddress, badgeId);
+
+if (isEligible) {
+  // Mint badge to user
+  await badgeSDK.mintBadge(userAddress, badgeId);
+}
+```
+
+## Integration Examples
+
+### DeFi Application
+
+```javascript
+import { PassportSDK, BadgeSDK } from '@trex/passport-sdk';
+
+// Check user's DeFi activity badge
+const hasDeFiBadge = await passport.hasBadge(userAddress, DEFI_BADGE_ID);
+
+if (hasDeFiBadge) {
+  // Grant premium features to DeFi users
+  enablePremiumFeatures(userAddress);
+}
+```
+
+### NFT Marketplace
+
+```javascript
+// Award badge for NFT collectors
+const nftCount = await getNFTCount(userAddress);
+
+if (nftCount >= 10) {
+  await badgeSDK.mintBadge(userAddress, NFT_COLLECTOR_BADGE_ID);
+}
+```
+
+### Social Platform
+
+```javascript
+// Use social validator badges
+const socialBadges = await passport.getSocialBadges(userAddress);
+
+// Match users based on interests
+const matchedUsers = await findUsersWithBadges([
+  GAMING_BADGE_ID,
+  NFT_BADGE_ID
+]);
+```
+
+## Economic Symbiosis Engine
+
+Access the Economic Symbiosis Engine to find users matching your criteria:
+
+```javascript
+import { MatchingEngine } from '@trex/matching-engine';
+
+const engine = new MatchingEngine({
+  apiUrl: 'https://api.trex.xyz/v1'
+});
+
+// Define target user profile
+const criteria = {
+  badges: [DEFI_BADGE_ID, HIGH_TVL_BADGE_ID],
+  minPoints: 1000,
+  socialMedia: {
+    twitter: { minFollowers: 1000 }
+  }
+};
+
+// Find matching users
+const matches = await engine.findMatches(criteria);
+
+// Ranked list of users by Persona Matching Score (PMS)
+matches.forEach(user => {
+  console.log(`User: ${user.address}, PMS: ${user.score}`);
+});
+```
+
+## Open SDKs
+
+T-Rex provides comprehensive open SDKs:
+
+<CardGroup cols={2}>
+  <Card title="Passport SDK" icon="id-card">
+    JavaScript/TypeScript SDK for T-Rex Passport integration
+  </Card>
+  <Card title="Badge SDK" icon="award">
+    SDK for creating and managing custom badge systems
+  </Card>
+  <Card title="Matching Engine" icon="diagram-project">
+    API for accessing the Economic Symbiosis Engine
+  </Card>
+  <Card title="Examples" icon="code">
+    GitHub repositories with example integrations
+  </Card>
+</CardGroup>
+
+<Card
+  title="GitHub Examples"
+  icon="github"
+  href="https://github.com/trex-network"
+>
+  Browse example applications and integrations
+</Card>
+
+<Tip>
+All SDKs are open source and available on GitHub. Check the documentation for detailed API references.
+</Tip>
+

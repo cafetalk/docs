@@ -1,0 +1,155 @@
+---
+title: "Getting Started"
+description: "Start building on T-Rex with this quickstart guide"
+---
+
+# Getting Started
+
+Get started building on T-Rex in minutes. This guide will walk you through setting up your development environment and deploying your first smart contract.
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- Node.js (v16 or higher) installed
+- A code editor (VS Code recommended)
+- Basic knowledge of Solidity and Web3 development
+
+## Installation
+
+### Install Hardhat
+
+```bash
+npm install --save-dev hardhat
+npx hardhat init
+```
+
+### Install Foundry
+
+```bash
+curl -L https://foundry.paradigm.xyz | bash
+foundryup
+```
+
+## Configure Your Project
+
+### Hardhat Configuration
+
+Update your `hardhat.config.js`:
+
+```javascript
+require("@nomicfoundation/hardhat-toolbox");
+
+module.exports = {
+  solidity: "0.8.20",
+  networks: {
+    trexMainnet: {
+      url: "https://rpc.trex.xyz/",
+      chainId: 1628,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
+    },
+    trexTestnet: {
+      url: "https://testnetrpc.trex.xyz",
+      chainId: 1962,
+      accounts: process.env.PRIVATE_KEY ? [process.env.PRIVATE_KEY] : []
+    }
+  }
+};
+```
+
+## Your First Contract
+
+Create a simple contract in `contracts/SimpleStorage.sol`:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+contract SimpleStorage {
+    uint256 public storedValue;
+
+    function set(uint256 x) public {
+        storedValue = x;
+    }
+
+    function get() public view returns (uint256) {
+        return storedValue;
+    }
+}
+```
+
+## Deploy Your Contract
+
+### Using Hardhat
+
+```bash
+# Compile
+npx hardhat compile
+
+# Deploy to testnet
+npx hardhat run scripts/deploy.js --network trexTestnet
+```
+
+### Deploy Script
+
+Create `scripts/deploy.js`:
+
+```javascript
+const hre = require("hardhat");
+
+async function main() {
+  const SimpleStorage = await hre.ethers.getContractFactory("SimpleStorage");
+  const simpleStorage = await SimpleStorage.deploy();
+
+  await simpleStorage.waitForDeployment();
+
+  console.log("SimpleStorage deployed to:", await simpleStorage.getAddress());
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+```
+
+## Verify Your Contract
+
+After deployment, verify your contract on the block explorer:
+
+```bash
+npx hardhat verify --network trexTestnet <CONTRACT_ADDRESS>
+```
+
+<Card
+  title="Block Explorer"
+  icon="magnifying-glass"
+  href="/documentation/tooling/block-explorers"
+>
+  View your deployed contract on the T-Rex block explorer
+</Card>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card
+    title="Smart Contracts"
+    icon="file-contract"
+    href="/documentation/build-on-trex/smart-contracts"
+  >
+    Learn about developing smart contracts on T-Rex
+  </Card>
+  <Card
+    title="T-Rex Passport SDK"
+    icon="code"
+    href="/documentation/build-on-trex/applications"
+  >
+    Integrate T-Rex Passport into your applications
+  </Card>
+</CardGroup>
+
+<Tip>
+Start with the testnet to test your contracts before deploying to mainnet. Get test tokens from the [faucet](/documentation/tooling/faucets).
+</Tip>
+

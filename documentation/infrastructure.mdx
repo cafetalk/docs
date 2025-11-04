@@ -1,0 +1,141 @@
+---
+title: "Infrastructure"
+description: "T-Rex infrastructure and network information"
+---
+
+# Infrastructure
+
+T-Rex provides comprehensive infrastructure support to ensure high availability and performance of the network.
+
+## Network Architecture
+
+### Node Types
+
+<CardGroup cols={2}>
+  <Card title="Sequencer Nodes" icon="server">
+    Decentralized nodes responsible for transaction ordering and batching
+  </Card>
+  
+  <Card title="RPC Nodes" icon="network-wired">
+    Nodes providing RPC API services
+  </Card>
+  
+  <Card title="Archive Nodes" icon="database">
+    Nodes storing complete historical data
+  </Card>
+  
+  <Card title="Validator Nodes" icon="shield">
+    Nodes validating transactions and state
+  </Card>
+</CardGroup>
+
+## Public RPC Endpoints
+
+### Mainnet
+
+```bash
+HTTPS: https://rpc.trex.xyz/
+WSS: wss://rpc.trex.xyz/ (if available)
+```
+
+### Testnet
+
+```bash
+HTTPS: https://testnetrpc.trex.xyz
+WSS: wss://testnetrpc.trex.xyz (if available)
+```
+
+## Running Your Own Node
+
+### Hardware Requirements
+
+#### Sequencer Node
+
+- **CPU**: 8+ cores
+- **RAM**: 32GB+
+- **Storage**: 1TB+ SSD
+- **Bandwidth**: 100Mbps+
+
+#### RPC Node
+
+- **CPU**: 4+ cores
+- **RAM**: 16GB+
+- **Storage**: 500GB+ SSD
+- **Bandwidth**: 50Mbps+
+
+### Software Requirements
+
+- **OS**: Linux (Ubuntu 20.04+ recommended)
+- **Docker**: For containerized deployment
+- **Node Software**: T-Rex node client
+
+### Setup Steps
+
+```bash
+# Clone node repository
+git clone https://github.com/trex-network/node.git
+cd node
+
+# Configure node
+cp config.example.toml config.toml
+# Edit config.toml with your settings
+
+# Start node
+./trex-node --config config.toml
+```
+
+## Monitoring and Operations
+
+### Monitoring Tools
+
+- **Node Monitoring**: Real-time node status and performance
+- **Network Monitoring**: Monitor network health
+- **Metrics Collection**: Collect and analyze network metrics
+
+### Log Management
+
+- Structured log output
+- Log aggregation and analysis
+- Alert mechanisms
+
+## Security Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Firewall Configuration" icon="shield">
+    Properly configure firewall rules
+  </Card>
+  
+  <Card title="Key Management" icon="key">
+    Securely store and manage keys
+  </Card>
+  
+  <Card title="Regular Updates" icon="arrow-rotate-right">
+    Keep node software updated
+  </Card>
+  
+  <Card title="Backup Strategy" icon="floppy-disk">
+    Regularly backup important data
+  </Card>
+</CardGroup>
+
+## Support Resources
+
+<Card
+  title="Node Documentation"
+  icon="book"
+  href="https://github.com/trex-network/node"
+>
+  View detailed node operation documentation
+</Card>
+
+<Card
+  title="Community Support"
+  icon="users"
+  href="https://discord.gg/trex"
+>
+  Join Discord community for help
+</Card>
+
+<Tip>
+Running a node requires technical knowledge. If you're new, consider using public RPC endpoints first.
+</Tip>

@@ -1,0 +1,85 @@
+---
+title: "Ethereum API"
+description: "Standard Ethereum JSON-RPC API methods"
+---
+
+# Ethereum API
+
+Standard Ethereum JSON-RPC API methods supported by T-Rex Chain.
+
+## Available Methods
+
+### Chain & Network
+
+- **[eth_chainId](/api-reference/ethereum-api/eth-chainId)** - Returns the current chain ID
+- **eth_protocolVersion** - Returns the protocol version
+- **web3_clientVersion** - Returns the client version
+
+### Blocks & Transactions
+
+- **[eth_getBlockByNumber](/api-reference/ethereum-api/eth-getBlockByNumber)** - Returns block by number
+- **eth_getBlockByHash** - Returns block by hash
+- **eth_getBlockTransactionCountByNumber** - Returns transaction count by block number
+- **eth_getBlockTransactionCountByHash** - Returns transaction count by block hash
+- **eth_getBlockReceipts** - Returns receipts for a block
+- **eth_getTransactionByHash** - Returns transaction by hash
+- **eth_getTransactionByBlockHashAndIndex** - Returns transaction by block hash and index
+- **eth_getTransactionReceipt** - Returns transaction receipt
+- **[eth_sendRawTransaction](/api-reference/ethereum-api/eth-sendRawTransaction)** - Sends a signed transaction
+
+### Accounts & State
+
+- **[eth_getBalance](/api-reference/ethereum-api/eth-getBalance)** - Returns account balance
+- **eth_getTransactionCount** - Returns transaction count for an address
+- **[eth_call](/api-reference/ethereum-api/eth-call)** - Executes a call without creating a transaction
+- **eth_getCode** - Returns code at an address
+- **eth_getStorageAt** - Returns storage at a position
+
+### Gas & Fees
+
+- **eth_estimateGas** - Estimates gas needed for a transaction
+- **eth_gasPrice** - Returns current gas price
+- **eth_feeHistory** - Returns fee history
+
+### Filters & Logs
+
+- **eth_newFilter** - Creates a new filter
+- **eth_newBlockFilter** - Creates a new block filter
+- **eth_newPendingTransactionFilter** - Creates a pending transaction filter
+- **eth_uninstallFilter** - Uninstalls a filter
+- **eth_getFilterLogs** - Returns logs for a filter
+- **eth_getFilterChanges** - Returns filter changes
+- **eth_getLogs** - Returns logs matching a filter
+
+### Accounts
+
+- **eth_accounts** - Returns accounts
+
+## Base URL
+
+```
+Mainnet: https://rpc.trex.xyz/
+Testnet: https://testnetrpc.trex.xyz
+```
+
+## Example Usage
+
+All methods use the standard JSON-RPC format:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "eth_methodName",
+  "params": [],
+  "id": 1
+}
+```
+
+<Card
+  title="View All Methods"
+  icon="list"
+  href="/api-reference/overview/trex-json-rpc-api"
+>
+  See the complete JSON-RPC API overview
+</Card>
+
